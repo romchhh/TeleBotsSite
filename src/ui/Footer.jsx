@@ -13,9 +13,9 @@ function Footer() {
 
                 {/* Navigation Links */}
                 <div className="flex flex-col md:flex-row md:space-x-8 text-center md:text-left mb-6 md:mb-0">
-                    <a href="#" className="hover:text-gray-300 transition-colors">Головна</a>
-                    <a href="#portfolio" className="hover:text-gray-300 transition-colors">Наші проєкти</a>
-                    <a href="#about" className="hover:text-gray-300 transition-colors">Про нас</a>
+                    <a href="https://telebots.site/#" className="hover:text-gray-300 transition-colors">Головна</a>
+                    <a href="https://telebots.site/prices" className="hover:text-gray-300 transition-colors">Ціни</a>
+                    <a href="https://telebots.site/blog" className="hover:text-gray-300 transition-colors">Блог</a>
                 </div>
 
                 {/* Social Media Links */}
@@ -34,7 +34,7 @@ function Footer() {
 
             {/* Copyright Section */}
             <div className="text-center mt-8">
-                <p className="text-gray-500 text-sm">©2024 TeleBots. All rights reserved.</p>
+                <p className="text-gray-500 text-sm">©2025 TeleBots. All rights reserved.</p>
             </div>
         </footer>
     );

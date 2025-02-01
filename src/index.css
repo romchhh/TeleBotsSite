@@ -22,8 +22,7 @@
         letter-spacing: 3px;
     }
     .hero {
-        background-image: url('hero.JPG');
-        background-position: center;
+        background-image: url('Group 19.png');
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
@@ -76,12 +75,20 @@
         height: 100%;
         background: linear-gradient( to left, rgba(255, 255, 255, 1) 52%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0) 100%);
     }
-    @media (max-width: 1500px) {
+    @media (max-width: 768px) {
+        .hero {
+            background-attachment: scroll;
+            background-position: center;
+        }
         .about::before {
-            background: linear-gradient( to left, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(to left, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0) 100%);
         }
     }
     @media (max-width: 1280px) {
+        .hero {
+            background-attachment: scroll;
+            background-position: center;
+        }
         .about::before {
             background: linear-gradient( to left, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0) 100%);
         }
@@ -111,11 +118,25 @@
         background-attachment: fixed;
     }
     @media (max-width: 1024px) {
+        .socials {
+            background-attachment: scroll;
+            background-position: center;
+        }
+        .advantages {
+            background-attachment: scroll;
+        }
         .about::before {
             width: 100%;
         }
     }
     @media (max-width: 768px) {
+        .socials {
+            background-attachment: scroll;
+            background-position: center;
+        }
+        .advantages {
+            background-attachment: scroll;
+        }
         .about::before {
             width: 100%;
             background-color: white;

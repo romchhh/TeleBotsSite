@@ -15,7 +15,7 @@ function YourComponent() {
 		<div>
 			{/* Зображення */}
 			<img
-				src='/public/herohelp.png'
+				src='/herohelp.png'
 				alt='Опис зображення'
 				className='absolute bottom-[-50px] right-0 sm:bottom-[0px] sm:right-1/3 max-w-[150px] md:max-w-[200px] lg:max-w-[300px] mb-12 lg:mb-0'
 				style={{
