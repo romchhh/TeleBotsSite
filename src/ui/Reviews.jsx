@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function Reviews() {
+    const [showSeoText, setShowSeoText] = useState(false);
+    const sliderRef = useRef(null);
+
     const reviews = [
         {
             name: 'Данііл Бережанський',
@@ -58,26 +64,227 @@ function Reviews() {
         },
     ];
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '60px',
+        arrows: true,
+        swipe: true,
+        swipeToSlide: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    centerMode: true,
+                    centerPadding: '40px',
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    centerMode: true,
+                    centerPadding: '20px',
+                }
+            }
+        ]
+    };
+
+    useEffect(() => {
+        const sliderElement = sliderRef.current?.innerSlider?.list;
+
+        const handleWheel = (e) => {
+            e.preventDefault();
+            if (e.deltaX > 0) {
+                sliderRef.current.slickNext();
+            } else if (e.deltaX < 0) {
+                sliderRef.current.slickPrev();
+            }
+        };
+
+        if (sliderElement) {
+            sliderElement.addEventListener('wheel', handleWheel, { passive: false });
+        }
+
+        return () => {
+            if (sliderElement) {
+                sliderElement.removeEventListener('wheel', handleWheel);
+            }
+        };
+    }, []);
+
     return (
         <section id='reviews' className='py-10'>
-            <div className='container'>
+            <div className='container mx-auto px-4'>
                 <div className='w-full text-center mb-10'>
                     <h2 className='text-3xl font-bold mb-5'>Відгуки клієнтів</h2>
                     <hr className='border-t-2 border-gray-300 mx-auto w-1/4 mb-5' />
                 </div>
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+                <Slider ref={sliderRef} {...settings}>
                     {reviews.map((review, index) => (
-                        <div key={index} className='bg-white p-5 rounded-lg shadow-lg'>
-                            <img
-                                src={review.photo}
-                                alt={review.name}
-                                className='w-20 h-20 rounded-full mx-auto mb-4 sm:w-24 sm:h-24'
-                            />
-                            <h3 className='text-lg font-semibold text-center'>{review.name}</h3>
-                            <p className='text-gray-600 text-center'>{review.text}</p>
+                        <div key={index} className='px-4'> {/* Додаємо відстань між відгуками */}
+                            <div className='bg-white p-5 rounded-lg shadow-lg transition-all duration-300'>
+                                <img
+                                    src={review.photo}
+                                    alt={review.alt}
+                                    className='w-20 h-20 rounded-full mx-auto mb-4 sm:w-24 sm:h-24 object-cover'
+                                />
+                                <h3 className='text-lg font-semibold text-center'>{review.name}</h3>
+                                <p className='text-gray-600 text-center'>{review.text}</p>
+                            </div>
                         </div>
                     ))}
+                </Slider>
+                <div className='text-center mt-10'>
+                    <button
+                        onClick={() => setShowSeoText(!showSeoText)}
+                        className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors'
+                    >
+                        Докладніше
+                    </button>
                 </div>
+                {showSeoText && (
+                    <div className='mt-10 bg-gray-100 p-5 rounded-lg'>
+                        <h3 className='text-2xl font-bold mb-4'>TeleBots про автоматизацію процесів та розробку в цілому</h3>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Боти Телеграм: Автоматизація бізнесу з Telebots</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Боти Телеграм — це потужні інструменти, які дозволяють автоматизувати рутинні завдання, такі як обробка замовлень, відповіді на запити клієнтів та багато іншого. Використовуючи Telebots, ви можете значно підвищити ефективність вашого бізнесу, зменшити витрати на обслуговування клієнтів та покращити їх задоволеність.
+                                Телеграм боти можуть бути використані для автоматизації будь яких процесів в вашому бізнесі, від збору зворотного зв'язку до продажу товарів та послуг.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Telegram Бот: Створення та налаштування з Telebots</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Створення Telegram бота може бути простим з правильними інструментами. Telebots надає вам всі необхідні ресурси для швидкого налаштування бота, включаючи інтеграцію з популярними сервісами та платформами. Це дозволяє вам зосередитися на розвитку вашого бізнесу, а не на технічних деталях.
+                                Телеграм бот може бути створений для будь якого бізнесу, від продажу товарів та послуг до збору зворотного зв'язку.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Парсери: Збір та аналіз даних</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Парсери — це інструменти, які автоматично збирають та аналізують дані з веб-сайтів. Вони можуть бути використані для моніторингу цін конкурентів, збору відгуків клієнтів або аналізу ринку. Це дозволяє бізнесу приймати обґрунтовані рішення на основі актуальної інформації.
+                                Парсер може бути створений для будь якого бізнесу, від продажу товарів та послуг до збору зворотного зв'язку.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Телеграм боти та інтеграції</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Телеграм бот або будь який інший чат бот може бути інтегрований з будь яким сервісом, який ви використовуєте. Це може бути CRM, сайт, електронна пошта, платіжна система, гугл сервіси, криптобіржа і багато іншого.
+                                Телеграм бот може бути інтегрований з будь яким сервісом, який ви використовуєте. Це може бути CRM, сайт, електронна пошта, платіжна система, гугл сервіси, криптобіржа і багато іншого.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Розробка ботів в Телеграмі: Нові можливості комунікації</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Розробка ботів в Телеграмі відкривають нові можливості для комунікації з клієнтами. Вони можуть автоматично відповідати на запити, надавати інформацію про продукти та послуги, а також збирати зворотний зв'язок. Це робить взаємодію з клієнтами більш ефективною та персоналізованою.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Чат-боти для бізнесу: Як вони допомагають</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Чат-боти стають важливим інструментом для бізнесу, допомагаючи автоматизувати обслуговування клієнтів, обробку замовлень та інші процеси. Вони можуть працювати 24/7, забезпечуючи безперервну підтримку та підвищуючи задоволеність клієнтів.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Інтеграція ботів з CRM: Переваги для бізнесу</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Інтеграція ботів з CRM-системами дозволяє автоматизувати процеси управління клієнтами, зберігаючи всю інформацію в одному місці. Це спрощує управління взаємовідносинами з клієнтами та підвищує ефективність роботи команди.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Боти для маркетингу: Як вони працюють</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Боти стають важливим інструментом для маркетингу, дозволяючи автоматизувати розсилки, збирати дані про клієнтів та аналізувати їх поведінку. Це допомагає створювати більш цільові та ефективні маркетингові кампанії.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Боти для підтримки клієнтів: Переваги та можливості</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Боти для підтримки клієнтів допомагають автоматизувати обслуговування, надаючи швидкі та точні відповіді на запити. Вони можуть обробляти велику кількість запитів одночасно, зменшуючи навантаження на команду підтримки.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Боти для e-commerce (Інтернет-магазин): Як вони допомагають</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Боти стають важливим інструментом для e-commerce, допомагаючи автоматизувати процеси продажу, обробки замовлень та підтримки клієнтів. Вони можуть надавати персоналізовані рекомендації, підвищуючи задоволеність клієнтів та збільшуючи продажі.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Розробка ботів для збору даних: Як вони працюють</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Боти для збору даних допомагають автоматизувати процеси збору інформації, дозволяючи бізнесу отримувати актуальні дані для аналізу та прийняття рішень. Вони можуть збирати дані з різних джерел, забезпечуючи повну картину ринку.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Боти для автоматизації процесів: Переваги для бізнесу</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Боти в телеграмі для автоматизації процесів допомагають бізнесу працювати ефективніше, автоматизуючи рутинні завдання та зменшуючи витрати. Вони можуть виконувати різноманітні функції, від обробки даних до управління проектами.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Боти для комунікації: Як вони допомагають</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Телеграм боти для комунікації допомагають покращити взаємодію з клієнтами, надаючи швидкі та персоналізовані відповіді на запити. Вони можуть працювати в різних каналах, забезпечуючи безперервну підтримку та підвищуючи задоволеність клієнтів.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Чат боти в телеграмі під ключ</h4>
+                            <p className='text-gray-700 mb-4'>
+                                TeleBots пропонує створення чат-ботів в Telegram під ключ. Це мінімізує витрати на розробку та обслуговування бота, так як ви можете зосередитися на розвитку свого бізнесу, а також від замовника буде потрібно лише мінімальний вклад - все інше ми зробимо ми. Наші спеціалісти допоможуть вам створити ідеальний бот для вашого бізнесу, який буде автоматично відповідати на запити клієнтів, збирати зворотний зв'язок та інші дані.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Розробка ботів в Телеграм: Процес розробки</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Розробка ботів в телеграмі може бути простим або складним процесом, в залежності від ваших потреб та цілей. Розробка може зайняти як і 1 годину, так і 1 місяць. Наші розробники допоможуть вам створити ідеальний бот для вашого бізнесу.
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Розробка ботів в Телеграм: Що включає в себе</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Розробка ботів в телеграмі включає в себе:
+                                <ul className='list-disc pl-5'>
+                                    <li>Аналіз потреб клієнта</li>
+                                    <li>Створення концепту телеграм бота</li>
+                                    <li>Розробка інтерфейсу</li>
+                                    <li>Інтеграція з сервісами</li>
+                                    <li>Налаштування бота</li>
+                                    <li>Тестування функціоналу телеграм бота</li>
+                                    <li>Публікація бота на сервері</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div className='mb-8'>
+                            <h4 className='text-xl font-semibold mb-3'>Які ще чат боти можна розробити?</h4>
+                            <p className='text-gray-700 mb-4'>
+                                Чат боти можуть бути різними, в залежності від потреб клієнта. Наприклад:
+                                <ul className='list-disc pl-5'>
+                                    <li>Бот для збору зворотного зв'язку</li>
+                                    <li>Бот для продажу товарів та послуг</li>
+                                    <li>Бот для підтримки клієнтів</li>
+                                    <li>Бот для автоматизації процесів</li>
+                                    <li>Бот для збору даних</li>
+                                    <li>Бот для автоматизації процесів</li>
+                                    <li>Бот для комунікації</li>
+                                    <li>Бот для e-commerce</li>
+                                    <li>Бот для автоматизації процесів</li>
+                                    <li>Бот для комунікації</li>
+                                    <li>Телеграм бот для арбітражу трафіку</li>
+                                </ul>
+                                Всі ці боти можуть бути створені в будь якій соціальній мережі, і ми можемо допомогти вам створити будь який чат бот для вашого бізнесу.
+                            </p>
+                        </div>
+                        
+                    </div>
+                )}
             </div>
         </section>
     );

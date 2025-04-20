@@ -2,6 +2,7 @@ import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Advantage from './Advantage';
 import Button from './Button';
+import HighlightedTextWithDots from './styledComponents/HighlightedTextWithDots';
 import './Advantages.css'; // Імпортуємо CSS-файл
 
 const ADVANTAGES = [
@@ -63,30 +64,72 @@ function Advantages() {
 
   return (
     <section
-      className='min-h-screen advantages flex flex-col justify-center items-center gap-24 py-10'
+      className='min-h-screen advantages flex flex-col justify-center items-center gap-24 py-10 bg-gradient-to-b from-gray-50 to-gray-100'
       id='advantages'
     >
-      <h2 className='text-4xl font-bold text-black'>Наші переваги</h2>
+      <div className='text-center'>
+        <h2 className='text-5xl font-bold mb-8'>
+          <HighlightedTextWithDots
+            colorText="#333333"
+            colorBackground="#e0e0e0"
+            colorDots="#4a4a4a"
+            widthDots={10}
+            widthBorder={4}
+          >
+            Наші переваги
+          </HighlightedTextWithDots>
+        </h2>
+        <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+          <HighlightedTextWithDots
+            colorText="#333333"
+            colorBackground="#e0e0e0"
+            colorDots="#4a4a4a"
+            widthDots={8}
+            widthBorder={3}
+          >
+            Чому саме ми?
+          </HighlightedTextWithDots>
+        </p>
+      </div>
       <div
         ref={advantagesRef}
-        className={`container grid xl:grid-cols-4 gap-10 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-center content-center transition-opacity duration-1000 ${
-          advantagesInView ? 'opacity-100' : 'opacity-0'
+        className={`container grid xl:grid-cols-4 gap-10 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-center content-center transition-all duration-1000 ${
+          advantagesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
         {ADVANTAGES.map((advantage, index) => (
-          <div className='advantage-item' key={index}>
+          <div 
+            className='advantage-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105' 
+            key={index}
+          >
             <Advantage
               src={advantage.img}
-              title={<span className="text-black">{advantage.title}</span>}
+              title={<span className="text-black font-bold text-xl">{advantage.title}</span>}
               index={index + 1}
             >
-              <p className="text-black">{advantage.description}</p>
+              <p className="text-gray-600 mt-4">{advantage.description}</p>
             </Advantage>
           </div>
         ))}
       </div>
-      <div>
-        <a href='https://t.me/nowayrm' target='_blank' rel='noopener noreferrer'>
+      <div className='text-center'>
+        <p className='text-xl text-gray-600 mb-8'>
+          <HighlightedTextWithDots
+            colorText="#333333"
+            colorBackground="#e0e0e0"
+            colorDots="#4a4a4a"
+            widthDots={8}
+            widthBorder={3}
+          >
+            Готові розпочати співпрацю?
+          </HighlightedTextWithDots>
+        </p>
+        <a 
+          href='https://t.me/nowayrm' 
+          target='_blank' 
+          rel='noopener noreferrer'
+          className='inline-block transform hover:scale-105 transition-transform duration-300'
+        >
           <Button className='text-white'>Зв'яжіться з нами</Button>
         </a>
       </div>

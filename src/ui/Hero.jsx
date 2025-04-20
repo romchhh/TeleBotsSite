@@ -1,87 +1,126 @@
-import { toast } from 'react-toastify';
-import Button2 from './Button2';
-import Input from './Input';
-import PhoneInput from './PhoneInput';
+"use client";
+import { useEffect, useState } from "react";
 
-function Hero() {
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+import "./styles/SchoolchildrenBanner.css";
+import HighlightedTextWithDots from "./styledComponents/HighlightedTextWithDots";
 
-		const formData = new FormData(e.currentTarget);
+export default function Hero() {
+  const links = [
+    {
+      text: "Чат-боти",
+      textMobile: "Чат-боти",
+      href: "#portfolio",
+    },
+    {
+      text: "Веб-сайти",
+      textMobile: "Веб-сайти",
+      href: "#portfolio",
+    },
+    {
+      text: "Інтеграції",
+      textMobile: "Інтеграції",
+      href: "#portfolio",
+    },
+    {
+      text: "Інтернет-магазини",
+      textMobile: "Інтернет-магазини",
+      href: "#portfolio",
+    },
+    
+  ];
+  const [isMobile, setIsMobile] = useState(false);
 
-		const name = formData.get('name');
-		const phone = formData.get('phone');
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
+      checkScreenSize();
+      window.addEventListener("resize", checkScreenSize);
+      return () => window.removeEventListener("resize", checkScreenSize);
+    }
+  }, []);
 
-		if (name === '' || phone === '') {
-			toast.error('Введіть всі дані!', {
-				position: 'top-right',
-				autoClose: 5000,
-			});
-			return;
-		}
+  const linksContainer = (
+    <div className="schoolchildren-banner-content-text-links">
+      {links.map((link, index) => {
+        return (
+          <div
+            key={index}
+            className="schoolchildren-banner-content-text-link"
+            onClick={(e) => {
+              e.preventDefault();
+              const target = document.querySelector(link.href);
+              target?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
+            {link.textMobile}
+          </div>
+        );
+      })}
+    </div>
+  );
 
-		try {
-			const response = await fetch('http://localhost:5000/send-email', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ name, phone }),
-			});
+  const bannerRightText = (
+    <div className="schoolchildren-banner-right-text-container">
+      <div className="schoolchildren-banner-right-text">
+        <div className="schoolchildren-banner-right-text-item">
+		  Налаштовуйте автовідповіді,
+        </div>
+        <div className="schoolchildren-banner-right-text-item">
+		  Запускайте розсилки
+        </div>
+        <div className="schoolchildren-banner-right-text-item">
+		  І автоматизуйте бізнес-процеси
+		за допомогою ботів
+        </div>
+      </div>
+      <button
+        className="schoolchildren-banner-right-text-btn"
+        onClick={() => {
+          window.open('https://t.me/nowayrm', '_blank');
+        }}
+      >
+        Дізнатися більше
+      </button>
+    </div>
+  );
 
-			if (response.ok) {
-				toast.success('Повідомлення надіслано!', {
-					position: 'top-right',
-					autoClose: 4000,
-				});
-			} else {
-				throw new Error('Failed to send email');
-			}
-		} catch (error) {
-			toast.error('Не вдалося надіслати повідомлення. Спробуйте пізніше.', {
-				position: 'top-right',
-				autoClose: 4000,
-			});
-		}
-	};
+  const bannerBottomText = (
+    <div className="schoolchildren-banner-right-text-bottom">
+      chatbots · websites · integrations
+    </div>
+  );
 
-	return (
-		<section className='hero z-0'>
-			<div className='container h-full relative'>
-				<div className='absolute top-1/2 translate-y-[-50%] flex items-center justify-between w-full left-1/2 translate-x-[-50%] gap-5 lg:flex-row flex-col sm:mt-0 mt-8'>
-				<h1 className='xl:text-3xl md:text-2xl text-xl text-white font-bold uppercase bg-black/45 xl:px-16 xl:py-6 sm:px-10 px-4 py-3 rounded-2xl text-center'>
-				Розробка чат ботів на замовлення <br />
-					<span className='xl:text-lg lg:text-md text-xs'>
-					Налаштовуйте автовідповіді, <br /> запускайте розсилки <br />
-					і автоматизуйте бізнес-процеси <br /> за допомогою ботів
-					</span>
-					</h1>
-					<form
-    className='w-full 2xl:max-w-[450px] max-w-[300px] flex flex-col items-center md:p-10 p-4 rounded-2xl gap-6 sm:gap-12 shadow-slate-800'
-    style={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)', background: 'linear-gradient(to right, #4B0000, #8B0000)' }}
->
-    <h2 className='md:text-2xl text-xl font-bold text-white uppercase max-w-[300px] text-center'>
-        Безкоштовна консультація
-    </h2>
-    <Input name='name' type='text' required={true}>
-        Ваше Ім&apos;я
-    </Input>
-    <PhoneInput name='phone' required={true}>
-        Номер телефону
-    </PhoneInput>
-    <a
-        href='https://t.me/nowayrm'
-        className='text-accent w-full hover:bg-light-gray bg-white text-center py-2 rounded'
-        target='_blank'
-        rel='noopener noreferrer'
-    >
-        Зв'яжіться з нами
-    </a>
-</form>
-				</div>
-			</div>
-		</section>
-	);
+  return (
+    <div className="schoolchildren-banner-container" style={{ marginTop: '100px' }}>
+      <div className="schoolchildren-banner-content">
+        <div className="schoolchildren-banner-content-text-header">
+          розробка {isMobile ? null : <br />}
+          <HighlightedTextWithDots
+            colorText="#ffffff"
+            colorBackground="#4a4a4a"
+            colorDots="#333333"
+            widthDots={isMobile ? 8 : 10}
+            widthBorder={isMobile ? 3 : 4}
+          >
+            чат-ботів та сайтів
+          </HighlightedTextWithDots>
+        </div>
+        {isMobile ? null : linksContainer}
+        {isMobile ? null : bannerRightText}
+      </div>
+      <div className="schoolchildren-banner-right">
+        <div className="schoolchildren-banner-right-img">
+          <img
+            loading="lazy"
+            src="/public/Product.png"
+            alt=""
+          />
+        </div>
+        {!isMobile ? null : linksContainer}
+        {isMobile ? bannerRightText : null}
+        {!isMobile ? bannerBottomText : null}
+      </div>
+    </div>
+  );
 }
 
-export default Hero;

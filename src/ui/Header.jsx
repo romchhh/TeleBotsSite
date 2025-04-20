@@ -31,7 +31,7 @@ function Header() {
     }, [isActiveNav]);
 
     return (
-        <header className={`${activeStyles} fixed duration-500 z-50 w-full py-3`}>
+        <header className={`${activeStyles} fixed top-0 left-0 duration-500 z-50 w-full py-3`}>
             <div className='flex justify-between items-center container 2xl:gap-28 relative gap-14'>
                 {/* Лого з посиланням на http://localhost:5173/ */}
                 <a

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaTelegram } from 'react-icons/fa';
 import Button from './Button'; // Assuming Button is in the same folder
+import { Helmet } from 'react-helmet';
 
 const blogPosts = [
   {
@@ -63,17 +64,35 @@ const blogPosts = [
     image: '/blog12.png',
     link: '/blog/more-leads',
   },
+  {
+    title: 'Як монетизувати телеграм бота',
+    image: '/blog13.png',
+    link: '/blog/how-to-monetize-telegram-bot',
+  },
+  {
+    title: 'Парсери від TeleBots',
+    image: '/blog14.png',
+    link: '/blog/parsers_telebots',
+  },
 ];
+
+
 
 const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <Helmet>
+        <title>Блог про чат-боти та інші технології</title>
+        <meta name="description" content="Дізнайтеся все про чат-боти, їхні переваги та можливості. Читайте статті, відео та огляди наших проектів." />
+        <meta name="keywords" content="чат-боти, технології, інновації, розробка, автоматизація, боти з ШІ, інтернет магазини в телеграмі, налаштування воронок для продаж з допомогою чат-ботів, як заробляти з допомогою телеграм ботів, перспективи телеграм ботів в Україні на 2025 рік, штучний інтелект в телеграм ботах, налаштування бота для збору лідів та збільшення конверсії, як монетизувати телеграм бота" />
+      </Helmet>
+
       {/* Introduction Section */}
       <div className="p-6 flex-grow mt-20">
         <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-6 rounded-lg">
           Блог
         </h1>
-        <p className="text-2xl mb-10 text-gray-700">
+        <p className="text-2xl mb-10 text-gray-700 text-center">
           Ласкаво просимо до нашого блогу! Тут ви знайдете корисну <br />
           інформацію, новини в світі чат-ботів та не тільки.
         </p>

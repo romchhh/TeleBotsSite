@@ -9,25 +9,29 @@ import About from './ui/About';
 import Advantages from './ui/Advantages';
 import Prices from './ui/Prices';
 import Purchase from './ui/Purchase';
+import Apper from './ui/Apper';
 import Socials from './ui/Socials';
 import Portfolio from './ui/Portfolio';
 import Reviews from './ui/Reviews';
 import Footer from './ui/Footer';
-
+import Projects from './ui/Projects';
 import PricesPage from './ui/PricesPage'; 
 import Blog from './ui/Blog'; // Сторінка блогу
-import BlogPost1 from './ui/BlogPost1'; // Нова сторінка блогу
-import BlogPost2 from './ui/BlogPost2';
-import BlogPost3 from './ui/BlogPost3';
-import BlogPost4 from './ui/BlogPost4';
-import BlogPost5 from './ui/BlogPost5';
-import BlogPost6 from './ui/BlogPost6';
-import BlogPost7 from './ui/BlogPost7'; // Новий пост
-import BlogPost8 from './ui/BlogPost8'; // Новий пост
-import BlogPost9 from './ui/BlogPost9'; // Новий пост
-import BlogPost10 from './ui/BlogPost10'; // Новий пост
-import BlogPost11 from './ui/BlogPost11'; // Новий пост
-import BlogPost12 from './ui/BlogPost12'; // Новий пост
+import BlogPost1 from './ui/Blog/BlogPost1'; // Нова сторінка блогу
+import BlogPost2 from './ui/Blog/BlogPost2';
+import BlogPost3 from './ui/Blog/BlogPost3';
+import BlogPost4 from './ui/Blog/BlogPost4';
+import BlogPost5 from './ui/Blog/BlogPost5';
+import BlogPost6 from './ui/Blog/BlogPost6';
+import BlogPost7 from './ui/Blog/BlogPost7'; // Новий пост
+import BlogPost8 from './ui/Blog/BlogPost8'; // Новий пост
+import BlogPost9 from './ui/Blog/BlogPost9'; // Новий пост
+import BlogPost10 from './ui/Blog/BlogPost10'; // Новий пост
+import BlogPost11 from './ui/Blog/BlogPost11'; // Новий пост
+import BlogPost12 from './ui/Blog/BlogPost12'; // Новий пост
+import BlogPost13 from './ui/Blog/BlogPost13'; // Новий пост
+import BlogPost14 from './ui/Blog/BlogPost14'; // Новий пост
+import NotFound from './ui/NotFound';
 
 function App() {
   return (
@@ -44,7 +48,9 @@ function App() {
                 <Advantages />
                 <Prices />
                 <Purchase />
+                
                 <Socials />
+                <Projects />
                 <Portfolio />
                 <Reviews />
               </>
@@ -64,8 +70,10 @@ function App() {
             <Route path="/blog/perspectives-in-ukraine" element={<BlogPost10 />} />
             <Route path="/blog/ai-in-bots" element={<BlogPost11 />} />
             <Route path="/blog/more-leads" element={<BlogPost12 />} />
-
+            <Route path="/blog/how-to-monetize-telegram-bot" element={<BlogPost13 />} />
+            <Route path="/blog/parsers_telebots" element={<BlogPost14 />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

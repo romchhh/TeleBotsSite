@@ -1,6 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.6;
+}
+
 @layer base {
     body {
         font-family: 'Montserrat', sans-serif;
@@ -65,6 +91,35 @@
         background-size: auto 100%;
         background-repeat: no-repeat;
         position: relative;
+    }
+    .purchase-section {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+    }
+    .highlighted {
+        background-color: #e3f2fd;
+        /* Світло-блакитний колір для виділення */
+        border-color: #90caf9;
+    }
+    .section-number {
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .start-section {
+        border-left: 5px solid #4caf50;
+        /* Зелений колір для секції Старт */
+    }
+    .development-section {
+        border-left: 5px solid #ff9800;
+        /* Помаранчевий колір для секції Розробка */
+    }
+    .launch-section {
+        border-left: 5px solid #2196f3;
+        /* Синій колір для секції Запуск */
     }
     .about::before {
         content: '';
@@ -206,4 +261,52 @@
 
 .advantage-item:hover {
     transform: scale(1.05);
+}
+
+
+/* Стилі для слайдів */
+.slick-slide {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    padding: 0 15px; /* Додаємо відстань між відгуками */
+}
+
+/* Стилі для центрального слайду */
+.slick-center {
+    opacity: 1;
+    transform: scale(1.1); /* Середній відгук стає трохи більшим */
+    z-index: 10; /* Виходить на передній план */
+}
+
+/* Стилі для контейнера */
+#reviews .container {
+    max-width: 1400px;
+}
+
+/* Стилі для стрілок (опціонально) */
+.slick-prev, .slick-next {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: 20;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 24px;
+    color: white;
+}
+
+/* Стилі для точок (опціонально) */
+.slick-dots li button:before {
+    font-size: 12px;
+    color: gray;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #3b82f6; /* blue-500 */
 }

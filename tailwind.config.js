@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
 	theme: {
@@ -5,6 +6,7 @@ export default {
 			fontFamily: {
 				montserrat: ['Montserrat', 'sans-serif'],
 				oswald: ['Oswald', 'sans-serif'],
+				sans: ['Montserrat', 'sans-serif'],
 			},
 			colors: {
 				accent: '#D60100',

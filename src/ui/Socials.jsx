@@ -13,18 +13,16 @@ function Socials() {
 					Підписуйся на наші соціальні мережі і стеж за новинками з світу чат-ботів
 				</p>
 				<div className='flex justify-center gap-10 flex-wrap'>
-
-				<Link to='https://www.instagram.com/telebotsnowayrm' target="_blank" rel="noopener noreferrer">
-				<Button className='text-white'>
-					<FaInstagram size={24} />
-				</Button>
-			</Link>
-			<Link to='https://t.me/nowayrm' target="_blank" rel="noopener noreferrer">
-				<Button className='text-white bg-[#24A1DE] hover:bg-blue-400'>
-					<FaTelegram size={24} />
-				</Button>
-			</Link>
-
+					<Link to='https://www.instagram.com/telebotsnowayrm' target="_blank" rel="noopener noreferrer">
+						<Button className='text-white'>
+							<FaInstagram size={24} />
+						</Button>
+					</Link>
+					<Link to='https://t.me/TeleBotsNowayrmChannel' target="_blank" rel="noopener noreferrer">
+						<Button className='text-white bg-[#24A1DE] hover:bg-blue-400'>
+							<FaTelegram size={24} />
+						</Button>
+					</Link>
 				</div>
 				<div className='flex justify-center gap-10 mt-10 flex-wrap'>
 					<article className='overflow-hidden rounded-xl inline-block'>
@@ -33,7 +31,13 @@ function Socials() {
 					<article className='overflow-hidden rounded-xl inline-block'>
 						<img src='tg.jpg' alt='telegram' className='max-h-[500px]' />
 					</article>
-
+				</div>
+				<div className='flex justify-center mt-10'>
+					<Link to='/blog' target="_blank" rel="noopener noreferrer">
+						<Button className='text-white bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded'>
+							Перейти до блогу
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</section>
